@@ -2,211 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Schedule Display</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #333;
-      }
-
-      .container {
-        text-align: center;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      h1,
-      h2 {
-        color: #0056b3;
-      }
-
-      label {
-        font-weight: bold;
-      }
-
-      textarea,
-      button {
-        display: block;
-        margin: 10px auto;
-        padding: 10px;
-        font-size: 16px;
-        width: 100%;
-        max-width: 500px;
-      }
-
-      button {
-        background-color: #0056b3;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background-color: #003d80;
-      }
-
-      .cards {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-      }
-
-      .card {
-        background-color: #f4f4f4;
-        padding: 20px;
-        margin: 0 10px;
-        border-radius: 8px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        cursor: pointer;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      .card.selected {
-        background-color: #0056b3;
-        color: white;
-      }
-
-      #scheduleOutput {
-        margin-top: 20px;
-        padding: 10px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        max-width: 500px;
-        margin: 20px auto;
-      }
-
-      .info-text {
-        text-align: left;
-        margin: 20px 0;
-      }
-      .copy-buttons {
-        display: flex;
-        justify-content: center; /* Adjust as needed */
-        margin-top: 10px; /* Optional: Adjust spacing between buttons and other elements */
-      }
-
-      .copy-buttons button {
-        margin: 0 5px; /* Optional: Adjust spacing between buttons */
-      }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Lanning Kreations | Custom Stickers & Shirts in Moses Lake, WA
+    </title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Using Montserrat for a modern, clean look -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1>Schedule Display</h1>
-      <label>Select Day:</label>
-      <div class="cards">
-        <div class="card" data-day="Monday" onclick="selectDay(this)">
-          Monday
-        </div>
-        <div class="card" data-day="Tuesday" onclick="selectDay(this)">
-          Tuesday
-        </div>
-        <div class="card" data-day="Wednesday" onclick="selectDay(this)">
-          Wednesday
-        </div>
-        <div class="card" data-day="Thursday" onclick="selectDay(this)">
-          Thursday
-        </div>
-        <div class="card" data-day="Friday" onclick="selectDay(this)">
-          Friday
-        </div>
+    <header>
+      <div class="header-content">
+        <h1>Lanning Kreations</h1>
+        <p>Custom Stickers &amp; Shirts in Moses Lake, WA</p>
       </div>
-
-      <label for="scheduleInput">Enter Schedule:</label>
-      <textarea id="scheduleInput" rows="8" cols="50"></textarea>
-
-      <button onclick="processSchedule()">Show Schedule</button>
-
-      <h2>Schedule Output</h2>
-      <div class="info-text">
-        Meetings generally take 20-30 minutes. Please send your Net ID, whether you would
-        prefer in-person or Zoom, and 2-3 times that work for you from this list:
+    </header>
+    <nav>
+      <div class="nav-container">
+        <ul>
+          <li><a class="active" href="index.html">About</a></li>
+          <li><a href="schedule.html">Schedule</a></li>
+        </ul>
       </div>
-      <div id="scheduleOutput"></div>
-      <div class="copy-buttons">
-        <button onclick="copyAllText()">Copy All Text</button>
-        <button onclick="copyResponse()">Copy Day/Times Only</button>
+    </nav>
+    <main>
+      <section class="hero">
+        <div class="content">
+          <h2>Where Art Meets Innovation</h2>
+          <p>
+            Discover a perfect blend of creative design and quality
+            craftsmanship. At Lanning Kreations we craft custom stickers and
+            shirts that truly capture your style—proudly serving Moses Lake, WA,
+            and beyond.
+          </p>
+          <a href="schedule.html" class="btn-primary">Book an Appointment</a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-container">
+        <p>
+          &copy; 2025 Lanning Kreations. Proudly serving Moses Lake, WA and
+          surrounding areas.
+        </p>
       </div>
-    </div>
-
-    <script>
-      let selectedCard = null;
-
-      function selectDay(card) {
-        if (selectedCard) {
-          selectedCard.classList.remove("selected");
-        }
-        card.classList.add("selected");
-        selectedCard = card;
-      }
-
-      function copyAllText() {
-        const infoText =
-          "Meetings generally take 20-30 minutes. Please send your Net ID, whether you would prefer in-person or Zoom, and 2-3 times that work for you from this list:";
-        const scheduleOutput = document
-          .getElementById("scheduleOutput")
-          .textContent.trim();
-        const textToCopy = `${infoText}\n\n${scheduleOutput}`;
-        copyTextToClipboard(textToCopy);
-      }
-
-      function copyResponse() {
-        const scheduleOutput = document.getElementById("scheduleOutput");
-        const textToCopy = scheduleOutput.textContent.trim();
-        copyTextToClipboard(textToCopy);
-      }
-
-      function copyTextToClipboard(text) {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-      }
-
-      function processSchedule() {
-        if (!selectedCard) {
-          alert("Please select a day.");
-          return;
-        }
-
-        const selectedDay = selectedCard.getAttribute("data-day");
-        const scheduleInput = document.getElementById("scheduleInput").value;
-        const scheduleOutput = document.getElementById("scheduleOutput");
-
-        const lines = scheduleInput.split("\n").map((line) => line.trim());
-        const uniqueTimes = new Set();
-
-        lines.forEach((line) => {
-          if (line.includes("to") && !line.includes("Scheduled")) {
-            const [startTime] = line.split(" to ");
-            uniqueTimes.add(startTime);
-          }
-        });
-
-        function convertTime(timeStr) {
-          const [time, period] = timeStr.split(" ");
-          let [hours, minutes] = time.split(":").map(Number);
-          if (period === "PM" && hours !== 12) hours += 12;
-          if (period === "AM" && hours === 12) hours = 0;
-          return new Date(1970, 0, 1, hours, minutes);
-        }
-
-        const sortedTimes = Array.from(uniqueTimes).sort(
-          (a, b) => convertTime(a) - convertTime(b)
-        );
-
-        scheduleOutput.innerHTML = `${selectedDay}: ${sortedTimes.join(", ")}`;
-      }
-    </script>
+    </footer>
   </body>
 </html>
